@@ -1,126 +1,132 @@
-# 🎭 Multimodal Emotion Detection
+🎭 Multimodal Emotion Detection
 
-A complete AI system for detecting emotions from **text**, **images**, and **audio** using deep learning and natural language processing. Built with PyTorch, HuggingFace Transformers, and deployed via Streamlit.
+An intelligent emotion detection system capable of analyzing text, image, and audio inputs to detect human emotions with high accuracy using deep learning models.
 
----
+🌐 Live Demo: https://multimodalemotiondetection.streamlit.app/
 
-## 🧠 Overview
+📌 Features
 
-This project combines **three powerful models** into a single system that can analyze human emotion from:
-- ✍️ Written **Text**
-- 📸 Facial **Image** (via file or webcam)
-- 🎙️ **Audio** recordings *(coming soon)*
+📄 Text Emotion Detection: Uses a fine-tuned DistilBERT model to classify emotions from text.
 
-It supports multiple input modes, provides user-friendly interfaces, and is built for deployment.
+🖼️ Image Emotion Detection: Utilizes a CNN-based ShuffleNet model trained on facial expressions.
 
----
+🔊 Audio Emotion Detection: Employs Wav2Vec2.0 model for speech-based emotion recognition.
 
-## 📂 Project Structure
+📁 Simple UI: Upload audio (WAV), text, or image files to see real-time predictions.
 
-```
-MULTIMODAL_EMOTION_DETECTION/
-│
-├── app.py                           # Streamlit interface
-├── predict_text.py                  # Text emotion inference
-├── predict_image_one.py             # Image emotion inference
-├── predict_multimodal.py            # Combined model (if needed)
-│
-├── data/                            # Text datasets
-│   ├── train.txt / val.txt / test.txt
-│   └── requirements.txt             # Dependencies
-│
-├── image_data/                      # Image datasets
-│   ├── train/ val/ test/
-│   └── split_val.py
-│
+🧠 Multimodal: Works on three modalities independently, allowing flexibility in user input.
+
+📂 Project Structure
+
+multimodal_emotion_detection/
+├── app.py                            # Main Streamlit app
+├── README.md
+├── requirements.txt
+├── .gitignore
 ├── models/
-│   ├── image_emotion_model/         # Trained CNN model for image
-│   └── text_emotion_model/          # DistilBERT-based model
+│   ├── image_emotion_model/
+│   │   └── shufflenet_fast.pth      # Trained CNN model
+│   └── text_emotion_model/
 │       ├── config.json
-│       ├── tokenizer.json, vocab.txt
-│       └── model.safetensors
-│
-├── text_model_output/               # Trained checkpoints
-│   ├── checkpoint-1000/
-│   ├── checkpoint-2000/
-│   └── checkpoint-3000/
-│
-├── text_model/                      # Text model code
-│
-├── results/                         # Output logs or prediction results
-│
-└── venv/                            # Virtual environment
-```
+│       ├── model.safetensors
+│       ├── tokenizer_config.json
+│       ├── vocab.txt
+│       └── ...
+├── predict_image_only.py            # Standalone image prediction script
+├── predict_text.py                  # Standalone text prediction script
+├── predict_multimodal.py           # Old multimodal (optional)
+├── text_model/
+│   └── train_text_model.py          # Script to train text model
+└── train_image_model.py             # Script to train image model
 
----
+🚀 Quick Start
 
-## 🚀 How to Run
+🖥️ Run Locally
 
-### 1. Install dependencies
+Clone the Repository
 
-```bash
-pip install -r data/requirements.txt
-```
+git clone https://github.com/Vankudoth-Saipriya/multimodal_emotion_detection.git
+cd multimodal_emotion_detection
 
-### 2. Run the App
+Install Requirements
 
-```bash
+pip install -r requirements.txt
+
+Launch App
+
 streamlit run app.py
-```
 
-### 3. Interface Options
+🛠️ Models Used
 
-- 📷 **Image Input**: Upload an image or use webcam
-- 📄 **Text Input**: Type your sentence to detect emotion
-- 🔊 **Audio Input**: *(Planned)* Record through mic and predict
+Modality
 
----
+Model
 
-## 📊 Models Used
+Description
 
-| Modality | Model                      | Library             |
-|----------|----------------------------|---------------------|
-| Text     | DistilBERT fine-tuned      | HuggingFace Transformers |
-| Image    | Custom CNN                 | PyTorch, TorchVision |
-| Audio    | *(Planned)* MFCC + CNN     | torchaudio, librosa |
+Text
 
----
+DistilBERT
 
-## 🧪 Emotion Labels
+Fine-tuned for 6 emotion categories
 
-- **Text**: `joy`, `sadness`, `anger`, `fear`, `surprise`, `love`
-- **Image**: `happy`, `sad`, `angry`, `fear`, `disgust`, `surprise`, `neutral`
+Image
 
----
+ShuffleNet Fast
 
-## 🛠️ Tech Stack
+Lightweight CNN trained on facial datasets
 
-- Python 3.11
-- PyTorch, HuggingFace Transformers
-- OpenCV, TorchVision
-- Streamlit (App deployment)
-- Git, GitHub (Version control)
+Audio
 
----
+Wav2Vec2.0 (HuggingFace)
 
-## 💡 Future Improvements
+Emotion classification from raw waveform
 
-- 🎙️ Real-time audio emotion detection
-- 🔀 Fuse predictions across modalities for higher accuracy
-- 🌐 Deploy the app to HuggingFace Spaces or Streamlit Cloud
-- 📱 Build mobile-responsive UI
+📅 Usage (on Web App)
 
----
+Text Tab
 
-## 🙋‍♀️ Author
+Paste or type text → Click "Predict Emotion"
 
-**Sai Priya Vankudoth**  
-🎓 B.Tech, IIT | Data Science & AI Enthusiast  
-🔗 GitHub: [saipriyavankudoth](https://github.com/saipriyavankudoth)  
-📧 Email: saipriyavankudoth@example.com
+Image Tab
 
----
+Upload .jpg or .png file → See predicted emotion
 
-## 📄 License
+Audio Tab
 
-This project is open-source under the [MIT License](LICENSE).
+Upload .wav file → Audio gets classified
+
+📝 Future Improvements
+
+🔴 Add webcam capture for real-time facial emotion detection.
+
+🔴 Add real-time audio recording for voice emotion input.
+
+🟡 Expand datasets and refine model accuracies.
+
+🟢 Integrate combined (fused) multimodal prediction pipeline.
+
+🔵 Enable deployment on HuggingFace Spaces / Docker.
+
+📦 Requirements
+
+All dependencies are listed in requirements.txt. Major ones:
+
+streamlit
+torch
+transformers
+torchaudio
+Pillow
+opencv-python
+librosa
+
+👩‍💼 Author
+
+Sai Priya Vankudoth
+
+🌐 GitHub: @Vankudoth-Saipriya
+
+🧪 License
+
+This project is licensed under the MIT License — see the LICENSE file for details.
+
