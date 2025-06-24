@@ -1,0 +1,25 @@
+
+# Python
+__pycache__/
+*.py[cod]
+
+# Virtual env
+env/
+venv/
+
+# Data and models (optional)
+dataset/
+images/
+*.pth
+*.pt
+*.h5
+
+# Logs and outputs
+logs/
+runs/
+
+# Jupyter
+*.ipynb
+
+# System files
+.DS_Store
